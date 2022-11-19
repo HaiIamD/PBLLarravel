@@ -32,12 +32,19 @@
         <div class="collapse navbar-collapse " id="navbarNav">
           <ul class="navbar-nav ">
             <li class="nav-item mx-3 ms-5 ">
-              <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Homepage</a>
+              <a class="nav-link " aria-current="page" href="{{ route('home') }}">Homepage</a>
             </li>
             @auth
+            @if (auth()->user()->level=="admin")
             <li class="nav-item mx-3 ">
               <a class="nav-link" href="{{ route('mahasiswa.index') }}">Logbook</a>
             </li>
+            @endif
+            @if (auth()->user()->level=="user")
+            <li class="nav-item mx-3 ">
+              <a class="nav-link" href="recomendation">Recomendation</a>
+            </li>
+            @endif
             @endauth
             <li class="nav-item mx-3 ">
               <a class="nav-link" href="{{ route('ourteam') }}">Contact</a>
@@ -53,8 +60,9 @@
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Hai, {{ auth()->user()->name }} 
                   </a>
+                 
                   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                    <li><a class="dropdown-item" href="/userpage">userpage</a></li>
+                    @if (auth()->user()->level=="user")<li><a class="dropdown-item" href="/userpage">userpage</a></li>@endif
                     <form action="/logout" method="post">
                       @csrf
                       <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>

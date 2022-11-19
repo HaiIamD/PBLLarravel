@@ -23,7 +23,7 @@
     .card {
       overflow: hidden;
       border: 0 !important;
-      border-radius: 20px !important;
+      border-radius: 50px !important;
       box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
     }
     
@@ -48,7 +48,7 @@
       width: 100%;
       height: 45px;
       padding-left: 40px;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       box-sizing: border-box;
       box-shadow: none;
       border: 1px solid #000000;
@@ -118,13 +118,13 @@
 <body>
 
 	<!-- ============================================================ -->
-	<div class="container">
+	<div class="container-fluid">
       <div class="row px-3">
         <div class="col-lg-10 col-xl-9 card flex-row mx-auto px-0">
           <div class="img-left d-none d-md-flex" style="background-image: url(img/Katakata.jpg)"></div>
 
           <div class="card-body">
-            <h2 class="title text-center mt-4">REGISTRATION</h2>
+            <h2 class="title text-center mt-2">REGISTRATION</h2>
             <form method="post" action="/register">
               @csrf
               <form class="form-box px-4">
@@ -164,6 +164,20 @@
                   </div>
                   @enderror
                 </div>
+                
+                <div class="form-group col-md-5">
+                  <label for="inputState">Level</label>
+                  <select  class="form-control" name="level" required>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                  @error('level')
+                  <div class="invalid-feedback">
+                    {{ $message }}
+                  </div>
+                  @enderror
+                </div>
+             
 
                 <div class="mb-3">
                   <button type="submit"  class="btn btn-block btn-success text-uppercase">SUBMIT</button>

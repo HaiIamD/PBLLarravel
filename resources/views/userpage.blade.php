@@ -43,7 +43,7 @@
                     
                   </div>
                   <div class="col-6">
-                      <p class="text-start">ABOUT ME</p>
+                      <p class="text-start">{{ auth()->user()->level  }} </p>
                       <div class="card w-100 h-100">
                         <div class="card-body ">
                           <h5 class="card-title">{{ auth()->user()->name }} </h5>

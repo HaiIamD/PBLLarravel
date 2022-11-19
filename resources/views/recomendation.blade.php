@@ -36,7 +36,7 @@
               <a class="nav-link " aria-current="page" href="{{ route('home') }}">Homepage</a>
             </li>
             <li class="nav-item mx-3 ">
-              <a class="nav-link" href="{{ route('mahasiswa.index') }}">Logbook</a>
+              <a class="nav-link" href="recomendation">Recomendation</a>
             </li>
             <li class="nav-item mx-3 ">
               <a class="nav-link" href="{{ route('ourteam') }}">Contact</a>
@@ -53,7 +53,7 @@
                     Hai, {{ auth()->user()->name }} 
                   </a>
                   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-
+                    <li><a class="dropdown-item" href="/userpage">userpage</a></li>
                     <form action="/logout" method="post">
                       @csrf
                       <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>
@@ -93,8 +93,7 @@
     <!-- Tabel -->
     <center>
       <div class="pb-3">
-        <a href='{{ route('mahasiswa.create') }}' class="btn btn-primary">+ Tambah Data</a>
-      </div>
+       
       @if(session('success'))
       <div class="alert alert-success" role="alert">
 
@@ -110,7 +109,7 @@
                   <th class="col-md-4">Tanggal Berangkat</th>
                   <th class="col-md-2">Budget</th>
                   <th class="col-md-2">Gambar</th>
-                  <th class="col-md-2">Edit/Delete</th>
+       
               </tr>
           </thead>
           <tbody>
@@ -123,15 +122,7 @@
                   <td>{{ $hasil->budget }}</td>
                   <td><img src="{{ asset($hasil->gambar) }}" width="100"></td>
                
-                  <td>
-                    <form action="{{ route('mahasiswa.destroy', $hasil->id) }}" method="POST">
-                      @csrf
-                      @method('delete')
-                      <a href='{{ route('mahasiswa.edit',$hasil->id) }}' class="btn btn-warning btn-sm">Edit</a>
-          
-                      <button  class="btn btn-danger btn-sm">Del</button>
-                    </form>
-                  </td>
+                 
               </tr>
                   
               @endforeach
